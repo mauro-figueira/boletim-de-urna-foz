@@ -121,7 +121,7 @@ app.layout = html.Div(children=[
              html.P('Bem-vindo ao projeto Boletim de Urna Foz com os resultados parlamentares de Foz do Iguaçu-PR em 2020.')]),
     html.Div(children=[html.H3('Resultado Geral'),
                        resultado_geral],
-             style={'width': '40%','display': 'inline-block'},
+             style={'width': '50%'},
              id='resultado-geral'),
     html.Div(children=[html.H3('Resultado por Partido'),
                        dcc.Dropdown(id='selecionar-partido',
@@ -129,26 +129,17 @@ app.layout = html.Div(children=[
                                     value='PDT',
                                     placeholder='Selecione o Partido'),
                        resultado_partidos],
-             style={'float': 'right',
-                    'display': 'inline-block',
-                    'width': '40%'}),
+             style={'width': '50%'}),
     html.Div(children=[html.H3('Resultado por bairro'),
                        dcc.Dropdown(id='selecionar-bairro',
                                     options=lista_bairros,
                                     value='Centro',
                                     placeholder='Selecione o bairro'),
                        resultado_bairros],
-             style={'width': '40%','display': 'inline-block',
-                    'float':'left'}),
+             style={'width': '50%'}),
     html.Div(children=[
         html.H3('Envie uma mensagem'),
         html.P('Este é um projeto em início de construção. Suas críticas, sugestões e elogios são bem-vindos.'),
-        # dcc.Input(
-        #     id='email-input',
-        #     type='email',
-        #     placeholder='Deixe seu email',
-        #     style={'margin': '10px'}
-        # ),
         dcc.Textarea(
             id='message-input',
             placeholder='Escreva sua mensagem.',
@@ -156,15 +147,10 @@ app.layout = html.Div(children=[
         ),
         html.Button('Enviar', id='send-button', n_clicks=0, style={'margin': '10px'}),
         html.Div(id='email-status')],
-            style={'display': 'inline-block',
-           'vertical-align': 'top',
-           'float': 'right',
-           'width': '40%'}),
-    html.Div(html.P("Obrigado! Mauro Sérgio Figueira",
-               style={'font-style': 'italic',
-                      'float': 'right'}),
-        style={'width': '40%',
-               'float': 'right'})
+            style={'width': '50%'}),
+    html.Div([html.P("Obrigado!", style={'font-style': 'italic'}),
+             html.P('Mauro Sérgio Figueira', style={'font-style': 'italic'})],
+        style={'width': '50%'})
 ],
     style={'font-family': fontes_letras}
 )
@@ -212,8 +198,6 @@ def send_email(n_clicks, message):
             return 'Mensagem enviada!'
         except Exception as e:
             return f'Error: {str(e)}'
-
-
 
 # if __name__ == '__main__':
 #     app.run_server(debug=True)
